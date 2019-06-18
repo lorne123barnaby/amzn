@@ -9,27 +9,25 @@ def get_vectors():
 
     for dir in directories:
         for file in os.listdir(prefix + "/" + dir):
-            print(prefix + "/" + dir + "/" + file)
             if file[0] == ".":
                 pass
             else:
                 doc = open(prefix + "/" + dir + "/" + file)
-                print(prefix + "/" + dir + "/" + file)
-                documentText = doc.read()
+                document_text = doc.read()
                 doc.close()
-                documentText = documentText.replace(" ", " [SPACE] ")
-                documentText = documentText.replace("\n", " [NEWLINE] ")
-                documentText = documentText.replace(",", " [COMMA] ")
-                documentText = documentText.replace(".", " [FULLSTOP] ")
-                documentText = documentText.replace(":", " [COLON] ")
-                documentText = documentText.replace(";", " [SEMICOLON] ")
-                documentText = documentText.replace("?", " [QMARK] ")
-                documentText = documentText.replace("_", "")
+                document_text = document_text.replace(" ", " [SPACE] ")
+                document_text = document_text.replace("\n", " [NEWLINE] ")
+                document_text = document_text.replace(",", " [COMMA] ")
+                document_text = document_text.replace(".", " [FULLSTOP] ")
+                document_text = document_text.replace(":", " [COLON] ")
+                document_text = document_text.replace(";", " [SEMICOLON] ")
+                document_text = document_text.replace("?", " [QMARK] ")
+                document_text = document_text.replace("_", "")
 
-
-                documents.append(documentText)
+                documents.append(document_text)
 
     vectorizer = CountVectorizer()
+
     X = vectorizer.fit_transform(documents)
     return X.toarray()
 
