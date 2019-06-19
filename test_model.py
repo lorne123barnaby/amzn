@@ -5,7 +5,7 @@ model = load("simpleC.model")
 vf = VectorFetcher()
 
 
-shakeSpeare = vf.get_test_vectors("shakespeare")
+shakeSpeare = vf.get_test_vectors(["shakespeare"], "test")
 marlowe = vf.get_test_vectors("marlowe")
 austen = vf.get_test_vectors("austen")
 
