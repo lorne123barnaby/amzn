@@ -10,7 +10,7 @@ class VectorFetcher(object):
         documents = []
         pre_prefix = "datasets"
         directories = ["shakespeare", "marlowe"]
-        for test_train in ["test", "train"]:
+        for test_train in ["train"]:
             prefix = pre_prefix + "/" + test_train
             for dir in directories:
                 for file in os.listdir(prefix + "/" + dir):
