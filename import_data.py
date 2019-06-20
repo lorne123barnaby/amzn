@@ -20,7 +20,7 @@ class VectorFetcher(object):
                         document_text = self.get_document(prefix + "/" + dir + "/" + file)
                         documents.append(document_text)
 
-        self.vectorizer.fit(documents)
+        self.vectorizer.fit_transform(documents)
         pass
 
     def __init__(self):
@@ -30,6 +30,7 @@ class VectorFetcher(object):
         doc = open(path)
         document_text = doc.read()
         doc.close()
+        document_text = document_text.lower()
         document_text = document_text.replace(" ", " [SPACE] ")
         document_text = document_text.replace("\n", " [NEWLINE] ")
         document_text = document_text.replace(",", " [COMMA] ")
@@ -37,6 +38,7 @@ class VectorFetcher(object):
         document_text = document_text.replace(":", " [COLON] ")
         document_text = document_text.replace(";", " [SEMICOLON] ")
         document_text = document_text.replace("?", " [QMARK] ")
+        document_text = document_text.replace("--", "")
         document_text = document_text.replace("_", "")
         return document_text
 
