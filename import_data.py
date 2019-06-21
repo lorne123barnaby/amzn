@@ -2,15 +2,15 @@ from sklearn.feature_extraction.text import CountVectorizer
 import os
 
 
-class VectorFetcher(object):
+class VectorFetcher:
 
     vectorizer = CountVectorizer()
 
-    def fit_vectoriser(self):
+    def fit_vectoriser(self, loc):
         documents = []
         pre_prefix = "datasets"
         directories = ["shakespeare", "marlowe"]
-        for test_train in ["train"]:
+        for test_train in loc:
             prefix = pre_prefix + "/" + test_train
             for dir in directories:
                 for file in os.listdir(prefix + "/" + dir):
@@ -23,8 +23,11 @@ class VectorFetcher(object):
         self.vectorizer.fit_transform(documents)
         pass
 
-    def __init__(self):
-        self.fit_vectoriser()
+    def __init__(self, loc):
+        if not loc:
+            loc = ["train"]
+        print(loc)
+        self.fit_vectoriser(loc)
 
     def get_document(self, path):
         doc = open(path)
